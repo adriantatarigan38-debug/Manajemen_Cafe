@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { sidebarNav } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/ui/icon";
@@ -47,16 +47,6 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
   const [shiftModalOpen, setShiftModalOpen] = useState(false);
-
-  useEffect(() => {
-    const nextState: Record<string, boolean> = {};
-    sidebarNav.forEach((item) => {
-      if (item.children?.some((child) => pathname === child.href)) {
-        nextState[item.title] = true;
-      }
-    });
-    setOpenGroups((prev) => ({ ...prev, ...nextState }));
-  }, [pathname]);
 
   const shiftMetrics = useMemo(
     () => [

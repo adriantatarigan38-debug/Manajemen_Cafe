@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import Compressor from "compressorjs";
 import { Button } from "@/components/ui/button";
@@ -245,9 +246,12 @@ export function CafeIdentityManager({ query = "" }: { query?: string }) {
               <div className="mt-5 rounded-[22px] bg-white/25 p-4">
                 <p className="text-sm font-semibold mb-3">Preview Gambar</p>
                 <div className="relative overflow-hidden rounded-2xl bg-white/40 p-4">
-                  <img 
-                    src={selectedDocument.previewUrl} 
+                  <Image
+                    src={selectedDocument.previewUrl}
                     alt={selectedDocument.label}
+                    width={selectedDocument.id === "logo" ? 256 : 1200}
+                    height={selectedDocument.id === "logo" ? 256 : 675}
+                    unoptimized
                     className={`mx-auto ${selectedDocument.id === "logo" ? "max-h-32 object-contain" : "max-h-48 w-full object-cover"}`}
                   />
                 </div>

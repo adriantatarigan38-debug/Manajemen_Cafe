@@ -48,6 +48,8 @@ const columns = [
 ];
 
 export function MenuTable({ data = defaultMenuItems }: { data?: MenuItem[] }) {
+  // TanStack Table manages an imperative table instance; this is expected here.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
